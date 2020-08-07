@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5, Example 6(P126)</title>
+</head>
+<body>
+    <script>
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Octomber", "November", "December"];
+
+        var weeks = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        //日期和时间设置为运行该脚本的pc机的当前日期和时间 Mon Aug 03 2020 09:55:11 GMT+0800 (中国标准时间)
+        var dateNow = new Date();
+        var yearNow = dateNow.getFullYear();  //以四位数表示的年份
+
+        //表示月份的整数，0表示一月，11表示12月
+        var monthNow = dateNow.getMonth();
+        var dayNow = dateNow.getDate();  //月份中的第几天
+        var weekNow = dateNow.getDay();//星期几，0表示星期日，1表示星期一
+        var daySuffix;
+
+        //基于当前时区，返回一个便于人们阅读的完整日期字符串  Mon Aug 03 2020
+        var dateString = dateNow.toDateString();
+
+        switch(dayNow){
+            case 1: 
+            case 21: 
+            case 31: 
+                daySuffix = "st";
+                break;
+            case 2: 
+            case 22: 
+                daySuffix = "nd";
+                break;
+            case 3: 
+            case 23: 
+                daySuffix = "rd";
+                break;
+            default: 
+                daySuffix = "th";
+                break;
+        }
+
+        document.write("It is the " + dayNow + daySuffix + " day ");
+        document.write("in the month of " + months[monthNow]);
+        document.write(" in the year " + yearNow);
+        document.write("<br/>Week: " + weeks[weekNow]);
+        document.write("<br/>toDateString(): " + dateString);
+        document.write("<br/>Date(): " + dateNow + "<br/>");
+
+        //确定年月日后会自动设置星期几    dateNow.setDate(dayNow + 28)当前日期之后的28天的日期
+
+        //月中的某一天作为参数传入，以设置日期。如果设置的值大于当前月份的天数，则日期自动滚动到下一月（从当前月一号向后滚动）， 月份一样。
+        dateNow.setDate(20);
+        dateNow.setMonth(8);//年中的某一月作为...，0表示一月
+        dateNow.setFullYear(2020);//把年份设置为作为参数传入的4位整数
+
+        document.write("Set date: " + dateNow);
+    </script>
+</body>
+</html>

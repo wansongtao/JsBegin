@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5, Example 7(P130)</title>
+</head>
+<body>
+    <script>
+        var greeting;
+
+        //日期和时间设置为运行该脚本的pc机的当前日期和时间 Mon Aug 03 2020 09:55:11 GMT+0800 (中国标准时间)
+        var nowDate = new Date();
+
+        var nowHour = nowDate.getHours();//返回小时
+
+        var nowMinute = nowDate.getMinutes();//返回分钟
+
+        var nowSecond = nowDate.getSeconds();//返回毫秒
+
+        if(nowMinute < 10) {
+            nowMinute = "0" + nowMinute;
+        }
+
+        if (nowSecond < 10) {
+            nowSecond = "0" + nowSecond;
+        }
+
+        if(nowHour < 12){
+            greeting = "Good Morning";
+        }else if(nowHour < 17){
+            greeting = "Good Afternoon";
+        }
+        else {
+            greeting = "Good Evening";
+        }
+
+        document.write("<h4>" + greeting + " and welcome to my website</h4>");
+        document.write("According to your clock the time is ");
+        document.write(nowHour + ":" + nowMinute + ":" + nowSecond + "<br/>");
+
+
+        //如果设置的时间参数是不合法的值，则js将向前或向后滚动相应的时间。例如，现在是9:57，把分钟设置为64，则时间会设置为10:04，即整点之后的64分钟
+        nowDate.setHours(23);
+        nowDate.setMinutes(70);
+        nowDate.setSeconds(40);
+
+        document.write(nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());
+        
+    </script>
+</body>
+</html>

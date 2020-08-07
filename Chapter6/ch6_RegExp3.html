@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式的具体用法</title>
+</head>
+<body>
+    <script>
+        var myListString = "apple,0.99,banana,0.50,peach,0.25,orange,0.75, mango, 12.99";
+        var theRegExp = /[^a-z]+/i;  //匹配一次或多次任何非单词字符
+
+        //以正则表达式作为分隔符，分割字符串，返回一个数组
+        var myFruitArray = myListString.split(theRegExp);
+
+        document.write("原字符串：" + myListString + "<br/> split():" + myFruitArray.join("<br/>"));
+
+        /*var priceRegExp = /[^0-9.]+/;
+        var fruitPrice = myListString.split(priceRegExp);
+
+        document.write("Price: " + fruitPrice.length);*/
+
+        var priceRegExp = /(\b\d*\.?\d+\b)/g;  //匹配数字,可带小数点，并分组
+        //在匹配到的价格后面加上$  $1指正则表达式第一个括号匹配到的内容
+        var fruitPrice = myListString.replace(priceRegExp, "$1$");
+
+        document.write("replace(): " + fruitPrice + "<br />");
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4, Example 1</title>
+</head>
+<body>
+    <script>
+        //虽然为全局变量和局部变量使用同样的标识符完全有效，但强烈建议应该避免这样做。这会给代码增加一些额外的、常常是不必要的复杂且混乱的麻烦。
+        function convertToCentigrade(degFahren) {
+            var degCent = 5 / 9 * (degFahren - 32);
+
+            return degCent;
+        }
+
+        var degFahren = [212, 32, -459.15];
+        var degCent = [];
+
+        for (var elementIndex in degFahren){
+            degCent[elementIndex] = convertToCentigrade(degFahren[elementIndex]);
+        }
+
+        for (var loopCounter = 2; loopCounter >= 0; loopCounter--){
+            document.write("Value " + loopCounter + " was " + degFahren[loopCounter] + " degrees Fahrenheit");
+
+            document.write(" which is " + degCent[loopCounter] + " degrees centigrade<br />");
+        }
+    </script>
+</body>
+</html>

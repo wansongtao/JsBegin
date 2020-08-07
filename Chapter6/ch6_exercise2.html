@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>习题二（使用正则表达式替换掉单词a）</title>
+</head>
+<body>
+    <script>
+        var myString = "a dog walked in off a street and ordered a finest beer.";
+
+        var myRegExp = /\ba\b/g;
+        myString = myString.replace(myRegExp, "the");
+
+        document.write(myString);
+    </script>
+</body>
+</html>

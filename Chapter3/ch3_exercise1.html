@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏（3次机会）</title>
+</head>
+<body>
+    <script>
+        //产生一个一到十之间的随机数
+        var randomNumber = Math.ceil(Math.random() * 10);
+        var guessNumber;
+        var frequency = 2;
+
+        do {
+            guessNumber = prompt("Please enter a number between 1 and 10(0 Terminate the program).", "");
+
+            guessNumber = parseInt(guessNumber);
+
+            if(isNaN(guessNumber)){
+                alert("Please enter an integer between 1 and 10!");
+            }
+            else if(!(guessNumber > 0 && guessNumber <= 10)){
+                if(guessNumber != 0){
+                    guessNumber = "again";
+                    alert("Please enter an integer between 1 and 10!");
+                }
+                else{
+                    break;
+                }
+            }
+            else if(guessNumber == randomNumber){
+                document.write("Very good!");
+            }
+            else {
+                if(frequency == 0){
+                    document.write("Sorry, you haven't guessed correctly three times.");
+                    break;
+                }
+                else if(guessNumber > randomNumber){
+                    alert("Big");
+                }
+                else if(guessNumber < randomNumber){
+                    alert("Small");
+                }
+
+                guessNumber = "again";
+                frequency--;
+                                
+            }
+        }while(isNaN(guessNumber));
+    </script>
+</body>
+</html>

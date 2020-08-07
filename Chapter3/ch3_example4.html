@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3, Example 4</title>
+</head>
+<body>
+    <script>
+        var degFahren = [212, 32, -459.15];
+        var degCent = [];
+
+        for(var loopCounter = 0; loopCounter < degFahren.length; loopCounter++){
+            degCent[loopCounter] = 5 / 9 * (degFahren[loopCounter] - 32);
+        }
+
+        for (var loopCounter = degFahren.length - 1; loopCounter >= 0; loopCounter--){
+            document.write("Value " + loopCounter + " was " + degFahren[loopCounter] + " degrees Fahrenheit");
+
+            document.write(" which is " + degCent[loopCounter] + " degrees centigrade<br />");
+        }
+
+        var firstName = ["万松涛", "乐诗彤", "艾斌如", "彭伟江"];
+
+        //for...in循环可以遍历数组中的每个元素，而无须知道数组中元素的个数。
+        for (var elementIndex in firstName){
+            document.write(firstName[elementIndex] + " ");
+        }
+    </script>
+</body>
+</html>

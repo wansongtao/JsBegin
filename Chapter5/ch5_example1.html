@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5, Example 1</title>
+</head>
+<body>
+    <script>
+        var myString = "Welcome to Wrox books. " + "The Wrox website is www.wrox.com. " + "Visit the Wrox website today. Thanks for buying Wrox";
+
+        var foundAtPosition = 0;
+        var wroxCount = 0;
+
+        while (foundAtPosition != -1){
+            //indexOf(parameter1, parameter2):参数1要查找的字符串 参数2可查找的字符位置（可选）。如果不写，则从开头开始向后查找;如果输入了，则从输入的位置开始向后查找。没查找到返回-1，查找到则返回查找到的字符位置
+            foundAtPosition = myString.indexOf("Wrox", foundAtPosition);
+            //在数组中的用法：同上
+
+            if(foundAtPosition != -1){
+                //继续查找下一个
+                foundAtPosition++;
+
+                //记录查找到的次数
+                wroxCount++;
+            }
+        }
+
+        document.write("There are " + wroxCount + " occurences of the word Wrox.<br/>");
+
+        foundAtPosition = myString.length - 1;
+        wroxCount = 0;
+
+        while(foundAtPosition != -1){
+            //lastIndexOf(parameter1, parameter2):从字符串的结尾开始向前查找，返回最后一个出现的数组元素的位置，没有找到返回-1.
+            foundAtPosition = myString.lastIndexOf("Wrox", foundAtPosition);
+            //在数组中的用法：同上
+
+            if(foundAtPosition != -1){
+                foundAtPosition--;
+                wroxCount++;
+            }
+        }
+
+        document.write("There are " + wroxCount + " occurences of the word Wrox");
+    </script>
+</body>
+</html>

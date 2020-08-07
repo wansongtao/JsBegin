@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Object</title>
+</head>
+<body>
+    <script>
+        var radius = 4;
+        var area = Math.PI * radius * radius;//Math.PI 圆周率3.14159
+
+        document.write("That area is " + area);
+
+
+        var myNumber = -111;
+        //Math.abs() 返回所传入参数的绝对值
+        document.write("<br/>" + Math.abs(myNumber));
+
+        //至少接受两个参数，可以是整数和浮点数，返回最大值
+        var max = Math.max(2, 1, 5, 10);
+        //至少接受两个参数，可以是整数和浮点数，返回最小值
+        var min = Math.min(5, 2, 1, 8);
+
+        document.write("<br/>max: " + max + " min: " + min);
+
+
+        var myNumbers = 30.53;
+        //Math.ceil()只有一个参数，总是把数值向上修整到最接近的最小整数。
+        //Math.floor()总是向下修整
+        //Math.round()四舍五入
+        document.write("<br/>ceil(): " + Math.ceil(myNumbers) + " floor() " + Math.floor(myNumbers) + " round(): " + Math.round(myNumbers) + "<br/>");
+
+
+        var diceThrow;
+        //Math.random()返回一个0~1之间的随机浮点数，包含0但不包含1.
+        for (var throwCount = 0; throwCount < 6; throwCount++){
+            diceThrow = Math.ceil(Math.random() * 6);//产生一个1~6的随机数
+            document.write(diceThrow + "<br/>");
+        }
+
+        //Math.pow(parameter1, parameter2)方法计算一个数的指定幂。第一个参数是底数，第二个参数是指数。
+        var numberMultiply = Math.pow(2, 4);
+        document.write(numberMultiply + "<br/>");
+
+        var cost = 10.2353;
+        //toFixed()方法的唯一参数是要保留的小数位数（会进行四舍五入），只能修整小数位数为0~20的数字。
+        document.write(cost.toFixed(2));
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*var myString = "";
+
+        for (var charCode = 65; charCode <= 90; charCode ++){
+            //String.fromCharCode(): 传送一序列用逗号分隔的、表示字符编码的数字，该方法就会把他们转换为一个字符串。
+            myString += String.fromCharCode(charCode);
+        }
+
+        document.write(myString);*/
+
+        var firstName = prompt("Please enter your name.", "");
+
+        //trim()去除字符串两端的空格
+        firstName = firstName.trim();
+
+        alert("Hello " + firstName);
+    </script>
+</body>
+</html>

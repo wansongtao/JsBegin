@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P89 Exercise</title>
+</head>
+<body>
+    <script>
+        function multiplyTable(myNumber){
+            for(var x = 1; x <= myNumber; x++){
+                for(var y = 1; y <= x; y++){
+                    document.write(x + " x " + y + " = " + x * y + "&nbsp;&nbsp;&nbsp;");
+                }
+                document.write("<br />");
+            }
+        }
+
+        do{
+            var userInput = prompt("Please enter an integer between 1 and 9(-1 Terminate the program).", 9);
+
+            userInput = parseInt(userInput, 10);
+
+            if(isNaN(userInput) || ( !(userInput >= 1 && userInput <= 9) && userInput != -1) ){
+                alert("Invaild value!");
+            }
+            else{
+                multiplyTable(userInput);
+            }
+        }while(userInput != -1);
+    </script>
+</body>
+</html>

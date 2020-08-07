@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window的各种对象</title>
+</head>
+<body>
+    history 对象跟踪用户访问的每个页面。
+    history 对象有back()和forward()方法。调用它们时，浏览器当前加载的页面位置就变成用户访问过的前一个页面或后一个页面。
+    history 对象还有go()方法。它带一个参数，该参数指定在历史栈中前进或后退几个页面。go(-1)等价于back(),go(1)等价于forward().
+
+    location 对象包含大量有关当前页面位置有用的信息。
+    location.replace("myPage.html");  加载该页面，并用该页面替换历史栈中的所有当前页面。
+    location.href = "myPage.html";  加载该页面，并把它添加到历史栈中。
+</body>
+</html>

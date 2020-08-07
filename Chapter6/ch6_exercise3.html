@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>删除禁用的词汇</title>
+</head>
+<body>
+    <form method="" action="">
+        <label for="">姓名：</label>
+        <input type="text" name="myname"><br>
+
+        <br><label for="">性别：</label>
+        <input type="radio" name="sex" id="male" checked><label for="male">男</label>
+        <input type="radio" name="sex" id="female"><label for="female">女</label><br>
+
+        <br><label for="">手机号：</label>
+        <input type="tel" name="telephoneNumber"><br>
+
+        <br><label for="">爱好：</label>
+        <input type="checkbox" name="favorite" id="read"><label for="read">阅读</label>
+        <input type="checkbox" name="favorite" id="music"><label for="music">听音乐</label>
+        <input type="checkbox" name="favorite" id="movie"><label for="movie">看电影</label><br>
+
+        <br><label for="">出生城市：</label>
+        <select name="city" id="mycity">
+            <option value="guangzhou" checked>广州</option>
+            <option value="hangzhou">杭州</option>
+            <option value="shanghai">上海</option>
+        </select>
+
+        <br><br><label for="" style="vertical-align: top;">留言：</label>
+        <textarea name="message" id="mymessage" cols="30" rows="5"></textarea>
+
+        <br><input type="button" id="changetext" value="提交">
+    </form>
+
+    <script>
+        window.onload = function() {
+            var userInput = prompt("请输入您要禁用的词汇。", "傻逼");
+
+            var mySubmit = document.getElementById("changetext");
+
+            var forbiddenWords = "";
+
+            if(userInput != ""){
+                //将用户输入的中文字符转换为十六进制Unicode编码并在编码前面加上一个\\u
+                for(var loopCount = 0; loopCount < userInput.length; loopCount++){
+                    forbiddenWords += "\\u" + userInput.charCodeAt(loopCount).toString(16);
+                }
+            }
+            else{
+                alert("请您输入您要禁用的词汇");
+            }
+            
+            function changeText (){
+                var myText = document.getElementById("mymessage").value;
+                var myRegExp = new RegExp(forbiddenWords);
+
+                myText = myText.replace(myRegExp, "**");
+                document.getElementById("mymessage").value = myText;
+            }
+
+            //用户单击鼠标后，将用户禁用的中文字符替换为**
+            mySubmit.onclick = changeText;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5(P100)</title>
+</head>
+<body>
+    <script>
+        var httpUrl = window.location.href;
+
+        //substring(parameter1, parameter2): 第一个参数子串的开始位置，第二个参数子串中最后一个字符后面的字符位置（可选）。如果不包含第二个参数则子串从开始位置到字符串末尾的所有字符。返回值：查找到的字符串,没有查找到返回空字符串。
+        var fileName = httpUrl.substring(httpUrl.lastIndexOf("/") + 1);
+
+        document.write("httpUrl: " + httpUrl + "<br/>" + "filename( substring() ): " + fileName + "<br/>");
+
+        //substr(parameter1, parameter2): 第一个参数子串要包含的第一个字符的起始位置，第二个参数子串的长度（可选）。如果不包含第二个参数，则包含从开始位置到结尾的所有字符。返回值：查找到的字符串,没有查找到返回空字符串。
+        var fileName2 = httpUrl.substr(httpUrl.lastIndexOf("/") + 1);
+
+        document.write("filename( substr() ): " + fileName2);
+    </script>
+</body>
+</html>

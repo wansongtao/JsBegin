@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>将单引号转换为双引号</title>
+</head>
+<body>
+    <script>
+        var text = "He then said 'My Name is O'Connerly, yes that's right, O'Connerly'";
+
+        document.write("Original: " + text + "<br />");
+
+        //单词分界是指在单词开始或结束与一个非单词字符（如空格或标点符号）之间的位置。
+        //一个非单词分界后跟一个单引号，或者一个单引号后跟一个非单词分界。
+        var myRegExp = /\B'|'\B/g;
+        text = text.replace(myRegExp, '"');  //将一个符合条件的单引号替换为双引号
+
+        document.write("Corrected: " + text + "<br />");
+
+
+
+        var myString = "Beginning JavaScript, Beginning Java 2, Professional JavaScript.";
+        var myRegExp1 = /\bjava\b/gi;  //匹配作为单词出现的java， \b单词分界
+
+        //search()方法可以在字符串中搜索字符模式。如果找到了返回字符位置，否则返回-1.
+        document.write("search: " + myString.search(myRegExp1) + "<br />");
+
+
+
+        var myYearString = "The years were 2012, 2013 and 2014.";
+        var myRegExp2 = /\b\d{4}\b/g;  //匹配年份
+
+        var resultArray = myYearString.match(myRegExp2);
+        document.write("match(): " + resultArray.join(" "));
+    </script>
+</body>
+</html>

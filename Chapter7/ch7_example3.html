@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>延迟消息和停止计时器</title>
+</head>
+<body>
+    <script>
+        function doThisLater() {
+            alert("Time's up!");
+        }
+
+        //延迟三秒后调用函数doThisLater，仅触发一次
+        var timeId = setTimeout(doThisLater, 3000);
+
+        //清除计时器timeId
+        clearTimeout(timeId);
+    </script>
+</body>
+</html>

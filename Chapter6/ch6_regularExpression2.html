@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expression Example 1</title>
+</head>
+<body>
+    <script>
+        var myString = "Paul, Paula, Pauline, paul, Paul";
+
+        //RegExp 对象默认仅查找与模式匹配的第一个子串。
+        var myRegExp = /Paul/;  //斜杠字符标记了正则表达式的开始和结束
+
+        //G 全局匹配，查找所有与模式匹配的子串，而不是在找到第一个匹配的子串后就停止。 I 模式不区分大小写。 M 多行标志。指定特殊字符^和$可以匹配多行文本和字符串的开始和结束
+        var myRegExp1 = /paul/gi;
+
+        //replace()方法接收两个参数，第一个是RegExp对象，用于定义要查找和替换的模式，第二个是替换文本
+        myString = myString.replace(myRegExp, "Ringo");
+        document.write(myString + "<br/>" + myString.replace(myRegExp1, "Ringo"));
+
+        var myInput = prompt("Please enter a pass phrase.", "");
+
+        function isValid (text){
+            //任何非a-z A-Z 0-9 空格的字符
+            var myRegExp2 = /[^a-z\d ]/i;
+
+            //RegExp对象的test()方法检查所传入的参数字符串。如果存在匹配项，返回true，否则返回false
+            return !(myRegExp2.test(text));
+        }
+
+        if(isValid(myInput)){
+            document.write("<br/>Your passphrase contains only valid characters.");
+        }else {
+            document.write("<br/>Your passphrase contains one or more invalid characters");
+        }
+
+        //  /^[a-zA-Z]\w{5,15}$/    "[A-Z][a-z]_[0-9]"组成,并且第一个字必须为字母6~16位
+    </script>
+</body>
+</html>

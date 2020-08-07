@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array attr</title>
+</head>
+<body>
+    <script>
+        var firstName = ["Jeremy", "Paul"];
+        var age = [22, 23, 20, 18];
+        var newArray;
+
+        //向数组中添加元素
+        firstName.push("xiaoming");
+        firstName.push("xiaohong");
+
+        //连接两个字符串，第一个数组的元素在前
+        newArray = firstName.concat(age);
+
+        document.write("连接后的数组: " + newArray);
+
+        //slice(parameter1, parameter2)复制数组的一部分，第一个参数欲复制的第一个元素的索引，第二个参数（可选）最后复制元素的后一个元素的索引。不填则复制到数组结尾
+        var sliceArray = newArray.slice(0, 2);
+
+        document.write("<br/>复制的第一和第二个数组元素: " + sliceArray + "<br/>");
+
+        //join(parameter): 一个参数，在元素之间插入的字符串。将数组转换为字符串
+        var joinArray = newArray.join("<br/>");
+        document.write(joinArray);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用正则表达式验证电话号码、邮政编码、邮箱地址</title>
+</head>
+<body>
+    <script src="ch6_RegExp.js"></script>
+    <script>
+        var phoneNumber = prompt("Please enter a phone number.", "");
+
+        if(isValidTelephoneNumber(phoneNumber)){
+            alert("Valid Phone Number.");
+        }else{
+            alert("Invalid Phone Number.");
+        }
+
+        var postalCode = prompt("Please enter a postal code.", "");
+
+        if(isValidPostalCode(postalCode)){
+            alert("Valid Postal Code.");
+        }else{
+            alert("Invalid Postal Code.");
+        }
+
+        var email = prompt("Please enter an email address.", "");
+
+        if(isValidEmail(email)){
+            alert("Valid Email Address");
+        }else{
+            alert("Invaild Email Address.");
+        }
+    </script>
+</body>
+</html>

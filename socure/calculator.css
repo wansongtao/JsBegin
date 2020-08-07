@@ -1,0 +1,33 @@
+table {
+    border-collapse: collapse;
+    border: 1px solid #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -165px;
+    margin-left: -240px;
+}
+
+.caption {
+    height: 30px;
+}
+
+td {
+    width: 120px;
+    height: 45px;
+    text-align: center;
+    border: 1px solid #000;
+}
+th {
+    width: 480px;
+    height: 45px;
+    text-align: right;
+}
+
+.char {
+    background: rgb(190, 189, 189);
+}
+
+.onclickchar {
+    background: rgb(126, 123, 123);
+}

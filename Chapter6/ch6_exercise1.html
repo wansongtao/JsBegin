@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>习题一（去除重复的单词）</title>
+</head>
+<body>
+    <script>
+        var mystring = "This sentence has has a fault and and we need to fix it.";
+
+        //匹配使用圆括号定义的第一组中的字符，即has has   and and
+        var myRegExp = /(\b\w+\b) \1/g;
+
+        //$1 第一组中匹配的字符，即has、and
+        mystring = mystring.replace(myRegExp, "$1");
+        document.write(mystring);
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>split(),replace(),search(),match()</title>
+</head>
+<body>
+    <script>
+        //弹出一个输入框
+        var values = prompt("Please enter a set of comma separated values.", "Apples,Oranges,Bananas");
+
+        function splitAndReverseText(csv){
+            //split(parameter)方法将一个字符串拆分为一个子串数组,在何处拆分根据该方法的分割参数决定，这个参数可以是一个字符或文本字符串，如下案例根据逗号分割
+            var parts = csv.split(",");
+            parts.reverse();  //颠倒数组顺序
+
+            //join()将一个数组转换为字符串，每个元素之间由特定的字符隔开
+            var reversedString = parts.join(",");
+
+            document.write(reversedString);
+        }
+
+        splitAndReverseText(values);
+
+        var myString = "The event will be in May, the 21st of June.";
+
+        //replace(parameter1, parameter2)方法在字符串中搜索子串(May)，当找到匹配的子串时，替换为指定的字符串(June)，不会改变原字符串的值，而是返回一个新的字符串
+        var myReplaceString = myString.replace("May", "June");
+
+        document.write("<br/>" + myString + "<br/>" + myReplaceString);
+
+        //search(parameter)方法用于在字符串中查找特定的文本段，该方法仅接收一个参数，即要查找的子串，返回子串在字符串中的位置，没有找到返回-1
+        document.write("<br/>" + myString.search("May"));
+
+        var myStringOne = "1997, 1998, 1999, 2000, 2001, 2000, 2002";
+
+        //match()返回一个数组，该数组的每个元素都包含一个找到的匹配子串
+        myMatchArray = myStringOne.match("2000");
+        document.write("<br/>" + myMatchArray);
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise2</title>
+</head>
+<body>
+    <script>
+        var firstNumber = prompt("Enter the first number", "");
+        var secondNumber = prompt("Enter the second number", "");
+
+        firstNumber = parseInt(firstNumber, 10);
+        secondNumber = parseInt(secondNumber, 10);
+
+        if(isNaN(firstNumber) == false && isNaN(secondNumber) == false){
+            var theTotal = firstNumber + secondNumber;
+
+            document.write(firstNumber + " added to " + secondNumber + " equals " + theTotal);
+        }
+        else{
+            alert("请输入两个整数");
+        }
+
+        
+    </script>
+</body>
+</html>

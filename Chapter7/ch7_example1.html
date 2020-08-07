@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date对象的世界时方法</title>
+</head>
+<body>
+    <script>
+        //Date对象只保存了自UTC时间1970年1月1日午夜到客户端计算机时钟的日期时间的毫秒数。
+        var localTime = new Date();
+
+        //Thu, 06 Aug 2020 02:34:21 GMT
+        //toUTCString()方法将localTime中的日期和时间转换为对应的UTC日期和时间。
+        var html = "<p>UTC Time is " + localTime.toUTCString() + "</p>";
+        
+        //2020/8/6 上午10:34:21
+        //toLocaleString()方法返回本地日期和时间值
+        html += "Local Time is " + localTime.toLocaleString() + "</p>";
+
+        //-480
+        //getTimezoneOffset()方法返回本地时间与UTC时间之间的差值（以分钟为单位）
+        html += "<p> Time Zone Offset is " + localTime.getTimezoneOffset() + "</p>";
+        
+        //上午10:34:21
+        //toLocaleTimeString()显示用户在其计算机上指定的时间
+        html += "<p>Using toLocalTimeString() gives: " + localTime.toLocaleTimeString() + "</p>";
+
+        //10:34:21 GMT+0800 (中国标准时间)
+        //toTimeString()显示时间部分和对应的时区
+        html += "<p> Using toTimeString() gives: " + localTime.toTimeString() + "</p>";
+
+        //2020/8/6
+        //toLocaleDateString()方法按用户在其计算机上设定的格式显示日期。
+        html += "<p>Using toLocaleDateString() gives: " + localTime.toLocaleDateString() + "</p>";
+
+        //Thu Aug 06 2020
+        //toDateString()方法使用标准格式显示用户计算机上的当前日期。
+        html += "<p>Using toDateString() gives: " + localTime.toDateString() + "</p>";
+
+        //toISOString()方法，以ISO格式字符串的形式返回日期和时间，格式：YYYY-MM-DDTHH:mm:ss.sssZ   T将日期和时间分隔开 末尾的Z表示UTC时区
+        html += "<p>Using toISOString() gives: " + localTime.toISOString() + "</p>";
+
+        document.write(html);
+    </script>
+</body>
+</html>

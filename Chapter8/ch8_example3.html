@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择图像</title>
+</head>
+<body>
+    <img src="" width="200" height="150" alt="My Image" />
+    <a href="https://www.baidu.com">百度</a>
+    <a href="https://www.google.com">谷歌</a>
+
+    <script>
+        var myImages = [
+            "../socure/images/tx1.jpg",
+            "../socure/images/tx2.jpg",
+            "../socure/images/tx3.jpg",
+            "../socure/images/tx4.jpg"
+        ];
+
+        var imgIndex = Math.floor(Math.random() * 4);
+
+        //document.images[0]获取页面上的第一个img元素
+        document.images[0].src = myImages[imgIndex];
+
+        //document.links[0]获取页面上的第一个链接
+        document.links[0].href = "https://www.qq.com";
+    </script>
+</body>
+</html>

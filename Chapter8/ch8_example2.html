@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>根据用户屏幕的色彩深度设置颜色</title>
+</head>
+<body>
+    <script>
+        //获取用户屏幕的色彩深度
+        var colorDepth = window.screen.colorDepth;
+        //window对象包含screen对象属性。screen对象的一个属性是colorDepth(颜色深度)，它返回1、4、8、15、16、24、32.这表示赋予屏幕上每个像素的位数。
+
+        switch(colorDepth) {
+            case 1: //2^1表示只有两种颜色，即黑白屏
+            case 4: 
+                document.bgColor = "white";
+                break;
+            case 8: //2^8表示有256种颜色
+            case 15: 
+            case 16: 
+                document.bgColor = "blue";
+                break;
+            case 24: //通常是24或32
+            case 32: 
+                document.bgColor = "skyblue";
+                break;
+            default: 
+                document.bgColor = "white";
+                break;
+        }
+
+        document.write("Your screen supports " + colorDepth + " bit color.");
+    </script>
+</body>
+</html>

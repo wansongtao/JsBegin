@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5, Example 2</title>
+</head>
+<body>
+    <script>
+        function checkCharType(charToCheck){
+            var returnValue = "O";
+
+            //charAt(parameter):接受一个参数，字符位置，返回字符本身
+            //charCodeAt(parameter):接受一个参数，字符位置，返回字符的Unicode字符集中的十进制编码
+            var charCode = charToCheck.charCodeAt(0);
+
+            if(charToCheck.charAt(0) >= "A" && charToCheck.charAt(0) <= "Z"){
+                returnValue = "U";
+            }
+            else if(charCode >= "a".charCodeAt(0) && charCode <= "z".charCodeAt(0)){
+                returnValue = "L";
+            }
+            else if(charCode >= "0".charCodeAt(0) && charCode <= "9".charCodeAt(0)){
+                returnValue = "N";
+            }
+
+            return returnValue;
+        }
+
+        var myString = prompt("Enter some text.", "Hello world!");
+
+        switch(checkCharType(myString)){
+            case "U": 
+                document.write("First character was upper case.");
+                break;
+            
+            case "L": 
+                document.write("First character was lower case.");
+                break;
+
+            case "N": 
+                document.write("First character was a number.");
+                break;
+
+            default: 
+                document.write("First character was not a character or a number.");
+                break;
+        }
+    </script>
+</body>
+</html>

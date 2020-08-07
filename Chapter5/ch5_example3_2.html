@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var numbers = [1, 2, 3, 4, 5];
+
+        function doubleAndAlert(value, index, array){
+            var result = value * 2;
+            document.write(result);
+        }
+
+        //forEach()对数组中的每个元素都执行一个操作。不能返回任何值，也不能改变原数组的值。
+        numbers.forEach(doubleAndAlert);
+        document.write("<br/>" + numbers);
+
+        function doubleAndReturn(value, index, array){
+            var result = value * 2;
+            return result;
+        }
+
+        //map()对数组中的每个元素都执行一个给定的函数但也返回一个包含函数执行结果的新数组。也不能改变原数组的值
+        var doubleNumber = numbers.map(doubleAndReturn);
+        document.write("<br/>" + doubleNumber);
+    </script>
+</body>
+</html>

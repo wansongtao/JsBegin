@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercise1</title>
+</head>
+<body>
+    <script>
+        if(typeof navigator.geolocation != "undefined") {
+            window.location.href = "modern.html";
+        } else {
+            location.href = "legacy.html";
+        }
+    </script>
+</body>
+</html>

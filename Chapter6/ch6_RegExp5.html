@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拆分HTML</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        var myHtml = "<h2>Hello World!</h2> <p>We love JavaScript!</p>";
+
+        //  <[^>\r\n]+> 该模式以<开始 >结束  [^>\r\n]+ 指定除>、\r(回车)、\n(换行)之外的一个或多个字符。（将匹配HTML的任何开始或结束标记）
+        //  [^<>\r\n]+ 该模式是一个或多个除<、>、\r或者\n字符之外的字符.
+        var regex = /<[^>\r\n]+>|[^<>\r\n]+/g;
+        var results = myHtml.match(regex);
+
+        document.getElementById("output").innerText = results.join("\r\n");
+    </script>
+</body>
+</html>

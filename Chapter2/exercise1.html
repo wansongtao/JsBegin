@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise1</title>
+</head>
+<body>
+    <p id="degrees"></p>
+
+    <script>
+        var degCent = prompt("请输入一个摄氏度", 100);
+        var degFahren;
+
+        if(isNaN(degCent)){
+            document.getElementById("degrees").innerHTML = "输入有误！请输入一个摄氏度度数！";
+        }
+        else {
+            degFahren = 9 / 5 * degCent + 32;
+
+            document.getElementById("degrees").innerHTML = degCent + " 摄氏度等于 " + degFahren + " 华氏度";
+        }        
+    </script>
+</body>
+</html>

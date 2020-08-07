@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5, Example 3</title>
+</head>
+<body>
+    <script>
+        //js保存的字符对应的Unicode编码，所以排序基于Unicode编码
+        var myShopping = ["Eggs", "Milk", "Potatoes", "Cereal", "Banana"];
+
+        var ord = prompt("Enter 1 for alphaberical order, and -1 for reverse order", 1);
+
+        if (ord == 1){
+            //sort()对数组升序排序
+            myShopping.sort();
+            document.write(myShopping.join("<br />"));
+        }
+        else if (ord == -1){
+            myShopping.sort();
+
+            //reverse()反转数组顺序
+            myShopping.reverse();
+            document.write(myShopping.join("<br />"));
+        }
+        else{
+            document.write("That is not a valid input.");
+        }
+    </script>
+</body>
+</html>

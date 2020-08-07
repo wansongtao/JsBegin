@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>习题二</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        //10:34:21
+        function outPutTime() {
+            var myText = document.getElementById("output");
+
+            var myDate = new Date();
+            myDate = myDate.toLocaleTimeString();
+            
+            var myRegExp = /\d{1,2}:\d{2}:\d{2}/;
+            myDate = myDate.match(myRegExp);
+            
+            myText.innerHTML = myDate[0];
+        }
+
+        setInterval(outPutTime, 1000);
+    </script>
+</body>
+</html>

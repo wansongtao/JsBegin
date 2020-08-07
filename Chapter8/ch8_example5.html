@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不同浏览器的检测和处理</title>
+</head>
+<body>
+    <script>
+        function getBrowserName () {
+            //userAgent 返回一个包含多段信息的字符串。例如：浏览器的版本、操作系统和浏览器模型。每个浏览器的返回值不同，小心使用
+            var lsBrowser = navigator.userAgent;
+
+            if (lsBrowser.indexOf("MSIE") >= 0){
+                return "MSIE";
+            }else if (lsBrowser.indexOf("Firefox") >= 0){
+                return "Firefox";
+            }else if (lsBrowser.indexOf("Chrome") >= 0){
+                return "Chrome";
+            }else if(lsBrowser.indexOf("Safari") >= 0){
+                return "Safari";
+            }else if (lsBrowser.indexOf("Opera") >= 0){
+                return "Opera";
+            } else if(lsBrowser.indexOf("Trident")) {
+                return "IE";
+            }else {
+                return "UNKNOWN";
+            }
+        }
+
+        function getBrowserVersion() {
+            //版本号一般跟在浏览器名字后面，隔个空格.
+            var ua = navigator.userAgent;
+            var browser = getBrowserName();
+
+            if(browser == "IE"){
+                var findIndex = ua.indexOf("rv:") + 3;
+                var browserVersion = parseFloat(ua.substring(findIndex, findIndex + 3));
+            } else {
+                var findIndex = ua.indexOf(browser) + browser.length + 1;
+                var browserVersion = parseFloat(ua.substring(findIndex, findIndex + 3));
+            }
+
+            return browserVersion;
+        }
+
+        var browserName = getBrowserName();
+        var browserVersion = getBrowserVersion();
+
+        if(browserName == "MSIE"){
+            if(browserVersion < 9){
+                document.write("Your version of IE is too old.");
+            } else {
+                document.write("Your version of IE is fully supported.");
+            }
+        } else if (browserName == "Firefox") {
+            document.write("Firefox is fully supported. Version: " + browserVersion);
+        } else if (browserName == "Safari") {
+            document.write("Safari is fully supported. Version: " + browserVersion);
+        } else if (browserName == "Chrome") {
+            document.write("Chrome is fully supported. Version: " + browserVersion);
+        } else if (browserName == "Opera") { 
+            document.write("Opear is fully supported. Version: " + browserVersion);
+        }else {
+            document.write("Sorry this browser version is not supported. Version: " + browserVersion);
+        }
+    </script>
+</body>
+</html>
