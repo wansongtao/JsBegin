@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用DOM事件模型</title>
+    <style>
+        .myunderline {
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>This is paragraph 1.</p>
+    <p>This is paragraph 2.</p>
+    <p>This is paragraph 3.</p>
+
+    <script>
+        //接收MouseEvent对象并将它赋给引用e
+        function handleEvent(e) {
+            var myTarget = e.target;  //当前元素对象
+            var type = e.type;  //事件类型
+
+            if (myTarget.tagName == "P") {
+                if (type == "mouseover") {
+                    myTarget.className = "myunderline";
+                } else if (type == "mouseout") {
+                    myTarget.className = "";
+                }
+            }
+
+            if (type == "click") {
+                //e.clientX  表示事件发生时，鼠标指针在浏览器窗口中的水平坐标
+                alert("You clicked the mouse button at the X: " + e.clientX + " and Y: " + e.clientY + " coordinates");
+                //e.clientY  表示事件发生时，鼠标指针在浏览器窗口中的垂直坐标
+            }
+        }
+
+        document.addEventListener("mouseover", handleEvent);
+        document.addEventListener("mouseout", handleEvent);
+        document.addEventListener("click", handleEvent);
+    </script>
+</body>
+</html>

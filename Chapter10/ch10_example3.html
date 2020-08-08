@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="img0" src="../socure/images/tx2.jpg" />
+    <img id="img1" src="../socure/images/tx1.jpg" />
+
+    <script>
+        var myImages = ["../socure/images/tx1.jpg", "../socure/images/tx2.jpg", "../socure/images/tx3.jpg", "../socure/images/tx4.jpg", "../socure/images/tx5.jpg"];
+
+        function changeImg(e) {
+            var el = e.target;
+            var newImgNumber = Math.round(Math.random() * 4);
+
+            while (el.src.indexOf(myImages[newImgNumber]) != -1) {
+                newImgNumber = Math.round(Math.random() * 4);
+            }
+
+            el.src = myImages[newImgNumber];
+        }
+
+        document.getElementById("img0").onclick = changeImg;
+        document.getElementById("img1").onclick = changeImg;
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加和删除多个事件监听器</title>
+</head>
+<body>
+    <img src="../socure/images/tx1.jpg" alt="" id="img0">
+    <div id="status"></div>
+
+    <script>
+        var myImages = ["../socure/images/tx1.jpg", "../socure/images/tx2.jpg", "../socure/images/tx3.jpg", "../socure/images/tx4.jpg", "../socure/images/tx5.jpg"];
+
+        function changeImg(e) {
+            var el = e.target;
+            var newImgNumber = Math.round(Math.random() * 4);
+
+            while (el.src.indexOf(myImages[newImgNumber]) != -1){
+                newImgNumber = Math.round(Math.random() * 4);
+            }
+
+            el.src = myImages[newImgNumber];
+        }
+
+        function updateStatus(e) {
+            var el = e.target;
+            var status = document.getElementById("status");
+
+            status.innerHTML = "The image changed to " + el.src;
+
+            //如果显示了tx5.jpg这张图片则注销事件监听器
+            if(el.src.indexOf("tx5") > -1) {
+                el.removeEventListener("click", changeImg);
+                el.removeEventListener("click", updateStatus);
+            }
+        }
+
+        var imgObj = document.getElementById("img0");
+
+        //为img元素添加多个事件监听器
+        imgObj.addEventListener("click", changeImg);
+        imgObj.addEventListener("click", updateStatus);
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在旧IE中添加和删除多个事件处理程序(IE 9 以前的版本)</title>
+</head>
+<body>
+    <img src="../socure/images/tx1.jpg" alt="" id="img0">
+    <div id="status"></div>
+
+    <script>
+        var myImages = ["../socure/images/tx1.jpg", "../socure/images/tx2.jpg", "../socure/images/tx3.jpg", "../socure/images/tx4.jpg", "../socure/images/tx5.jpg"];
+
+        function changeImg(e) {
+            var el = e.srcElement;  //e.srcElement 旧IE获取接收事件的元素
+            var newImgNumber = Math.ceil(Math.random() * 4);
+
+            while (el.src.indexOf(myImages[newImgNumber]) != -1) {
+                newImgNumber = Math.ceil(Math.random() * 4);
+            }
+
+            el.src = myImages[newImgNumber];
+        }
+
+        function updateStatus(e) {
+            var el = e.srcElement;
+            var status = document.getElementById("status");
+
+            status.innerHTML = "The image changed to " + el.src;
+
+            if(el.src.indexOf("tx5") > -1) {
+                el.detachEvent("onclick", changeImg);
+                el.detachEvent("onclick", updateStatus);
+            }
+        }
+
+        var imgObj = document.getElementById("img0");
+
+        //目前的IE版本已经不支持attachEvent对象
+        imgObj.attachEvent("onclick", updateStatus);  //后执行
+        imgObj.attachEvent("onclick", changeImg);  //先执行
+    </script>
+</body>
+</html>

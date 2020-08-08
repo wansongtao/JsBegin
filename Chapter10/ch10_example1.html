@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用HTML属性事件处理程序显示随机图片</title>
+</head>
+<body>
+    <img src="../socure/images/tx2.jpg" onclick="changeImg(this)" />
+    <img src="../socure/images/tx1.jpg" onclick="changeImg(this)" />
+
+    <script>
+        var myImages = ["../socure/images/tx1.jpg", "../socure/images/tx2.jpg", "../socure/images/tx3.jpg", "../socure/images/tx4.jpg", "../socure/images/tx5.jpg"];
+
+        function changeImg(that) {
+            var newImgNumber = Math.round(Math.random() * 4);
+
+            while (that.src.indexOf(myImages[newImgNumber]) != -1) {
+                newImgNumber = Math.round(Math.random() * 4);
+            }
+
+            that.src = myImages[newImgNumber];
+        }
+    </script>
+</body>
+</html>
