@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        .myImg {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            border-radius: 10px;
+            /* transition: 1.5s; */
+        }
+
+        /* .myImg:hover {
+            transform: rotate(360deg);
+            cursor: pointer;
+        } */
+    </style>
+</head>
+<body>
+    <img src="../socure/images/touxiang.jpg" alt="" class="myImg"> 
+
+    <script>
+        var direction = false;
+
+        function imgAnimation() {
+            //选择类名为myImg的第一个元素
+            var myImg = document.querySelector(".myImg");
+
+            //获取left偏移量
+            var currentPosition = myImg.offsetLeft;
+
+            //left偏移量小于410px，则向右移动
+            if(!direction) {
+                currentPosition += 2;
+
+                if(currentPosition >= 410) {
+                    direction = true;
+                }
+            } else {//left偏移量达到410px后，开始向左移动
+                currentPosition -= 2;
+
+                if (currentPosition <= 10 ) {
+                    direction = false;
+                }
+            }
+
+            currentPosition += "px";
+
+            //设置该元素left的值
+            myImg.style.left = currentPosition;
+        }
+
+        setInterval(imgAnimation, 10);
+    </script>
+</body>
+</html>

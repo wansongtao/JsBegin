@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置属性</title>
+</head>
+<body>
+    <p id="paragraph1">This is some text.</p>
+
+    <script>
+        var pElement = document.getElementById("paragraph1");
+        //setAttribute() 设置属性
+        pElement.setAttribute("align", "center");
+
+        //getAttribute()获取属性
+        alert(pElement.getAttribute("align"));
+
+        //removeAttribute()移除属性
+        pElement.removeAttribute("align");
+    </script>
+</body>
+</html>

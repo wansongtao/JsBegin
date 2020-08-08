@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用style对象/className属性</title>
+    <style>
+        #divAdvert {
+            font: 12pt arial;
+        }
+
+        .new-style {
+            font-style: italic;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="divAdvert">Here is an advertisement.</div>
+
+    <script>
+        var divAdvert = document.getElementById("divAdvert");
+
+        /*divAdvert.style.fontStyle = "italic";
+        divAdvert.style.textDecoration = "underline";*/
+
+        //修改该元素的类
+        divAdvert.className = "new-style";
+    </script>
+</body>
+</html>

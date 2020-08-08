@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用DOM导航HTML文档</title>
+</head>
+<body>
+    <h1 id="heading1">My Heading</h1>
+
+    <p id="paragraph1">This is some text in a paragraph.</p>
+
+    <script>
+        var htmlElement;
+        var headElement;
+        var bodyElement;
+        var h1Element;
+        var pElement;
+
+        //获取HTML元素
+        htmlElement = document.documentElement;
+
+        //获取HTML元素的第一个子元素
+        headElement = htmlElement.firstChild;
+
+        alert(headElement.tagName);  //获取head元素的标签名(HEAD)
+
+        //head元素的下一个兄弟节点的节点类型，文本节点类型为3
+        if(headElement.nextSibling.nodeType == 3) {
+            bodyElement = headElement.nextSibling.nextSibling;
+        } else {
+            //head元素的下一个兄弟节点body
+            bodyElement = headElement.nextSibling;
+        }
+
+        alert(bodyElement.tagName);
+
+        if (bodyElement.firstChild.nodeType == 3) {
+            h1Element = bodyElement.firstChild.nextSibling;
+        } else {
+            h1Element = bodyElement.firstChild;
+        }
+
+        alert(h1Element.tagName);
+        h1Element.style.fontFamily = "Arial";
+
+        if (h1Element.nextSibling.nodeType == 3){
+            pElement = h1Element.nextSibling.nextSibling;
+        } else {
+            pElement = h1Element.nextSibling;
+        }
+
+        alert(pElement.tagName);
+        pElement.style.fontFamily = "Arial";
+
+        if (pElement.previousSibling.nodeType == 3){
+            h1Element = pElement.previousSibling.previousSibling;
+        } else {
+            //p元素的前一个兄弟节点
+            h1Element = pElement.previousSibling;
+        }
+
+        h1Element.style.fontFamily = "Courier";
+    </script>
+</body>
+</html>

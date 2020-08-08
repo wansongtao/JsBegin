@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用DOM方法创建HTML元素和文本</title>
+</head>
+<body>
+    <script>
+        //创建一个文本节点
+        var newText = document.createTextNode("My Heading");
+
+        //创建一个h1元素
+        var newElem = document.createElement("h1");
+
+        newElem.appendChild(newText);  //将文本添加到h1元素的末尾
+        document.body.appendChild(newElem);  //将h1元素添加到body子节点的末尾
+
+        newText = document.createTextNode("This is some text in a paragraph.");
+        newElem = document.createElement("p");
+
+        newElem.appendChild(newText);
+        document.body.appendChild(newElem);
+
+        /*
+            appendChild(newNode)  将一个新node对象添加到子节点列表的末尾；该方法返回追加的节点。
+
+            cloneNode(cloneChildren)  返回当前节点的一个副本；该方法的参数是一个布尔值，如果该值为true，则克隆当前节点及其所有的子节点；如果该值为false，则仅克隆当前节点，而不包含其子节点。
+
+            hasChildNodes()  如果节点有子节点，则返回true，否则返回false。
+
+            insertBefore(newNode, referenceNode)  在referenceNode指定的节点前，插入一个node对象，返回新插入的节点。
+
+            removeChild(childNode)  从node对象的子节点列表中，删除一个子节点，并返回删除的节点。
+        */
+    </script>
+</body>
+</html>
