@@ -44,7 +44,7 @@
     <div id="descContainer"></div>
 
     <script>
-        var activeTab = null;
+        //var activeTab = null;
 
         function handleEvent(e) {
             var target = e.target;  //触发当前事件的元素对象
@@ -74,13 +74,14 @@
                         //复制当前元素的父节点的所有子节点
                         // var allNode = target.parentNode.cloneNode(true);
                         var allNode = document.querySelector('.tabStrip')
-                        console.log(allNode)
+                        console.log(allNode);
                         //var allNum;
                         var num = target.getAttribute("data-tab-number");
                         
                         for (var i = 0; i < allNode.children.length; i++) {
                             //allNum = allNode.children[i].getAttribute("data-tab-number");
-                            console.log(allNode.children[i],target)
+                            console.log(allNode.children[i],target);
+                            
                             if(allNode.children[i] == target) {
                                 target.className = "tabStrip-tab-click";
                             } else {

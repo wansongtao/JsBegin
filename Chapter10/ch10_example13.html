@@ -32,7 +32,7 @@
             //大多数情况下，要禁止drop事件的默认行为
             e.preventDefault();
 
-            //dragover 拖动过程中，鼠标移动到元素上时，在目标上触发
+            //dragover 拖动过程中，鼠标移动到元素上时，在目标元素上触发
             if (e.type == "dragover") {
                 dropStatus.innerHTML = "You're dragging over the drop zone!";
             } else {
@@ -43,9 +43,10 @@
         var dropZone = document.getElementById("dropZone");
         var dropStatus = document.getElementById("dropStatus");
 
+        //当拖动元素时，鼠标进入dropZone元素时，触发dragover事件
         dropZone.addEventListener("dragover", dragDropHandle);
 
-        //drop 释放（用户在对象上释放鼠标按钮）对象时，在目标上触发
+        //drop 释放（用户在对象上释放鼠标按钮）对象时，在目标元素上（dropZone）触发
         //dragleave 拖动过程中，鼠标离开目标时，在目标上触发
         dropZone.addEventListener("drop", dragDropHandle);
     </script>

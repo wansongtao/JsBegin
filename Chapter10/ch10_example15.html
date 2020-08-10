@@ -95,9 +95,17 @@
         }
 
         for (var i = 0; i < targets.length; i++) {
+                                   
+            //dragover 拖动元素移动到目标元素（targets[i]）上时触发
             targets[i].addEventListener("dragover",handleOverDrop);
+
+            //drop 在目标元素（targets[i]）上释放拖动元素时触发
             targets[i].addEventListener("drop", handleOverDrop);
+
+            //dragenter 拖动元素第一次进入目标元素（targets[i]）时触发
             targets[i].addEventListener("dragenter", handleDragEnterLeave);
+
+            //dragleave 拖动元素离开目标元素（targets[i]）时触发
             targets[i].addEventListener("dragleave", handleDragEnterLeave);
         }
     </script>

@@ -14,10 +14,10 @@
 
         function changeImg(e) {
             var el = e.srcElement;  //e.srcElement 旧IE获取接收事件的元素
-            var newImgNumber = Math.ceil(Math.random() * 4);
+            var newImgNumber = Math.round(Math.random() * 4);
 
             while (el.src.indexOf(myImages[newImgNumber]) != -1) {
-                newImgNumber = Math.ceil(Math.random() * 4);
+                newImgNumber = Math.round(Math.random() * 4);
             }
 
             el.src = myImages[newImgNumber];
