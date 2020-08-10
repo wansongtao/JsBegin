@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var evt = {
+            addListener: function(obj, type, fn) {
+                //如果浏览器支持addEventListener，就用该方法注册事件监听器
+                if (obj.addEventListener) {
+                    obj.addEventListener(type, fn);
+                } else {//否则采用IE旧版本的attachEvent注册事件监听器
+                    obj.attachEvent("on" + type, fn);
+                }
+            },
+            removeListener: function(obj, type, fn) {
+                if(obj.removeEventListener) {
+                    obj.removeEventListener(type, fn);
+                } else {
+                    obj.detachEvent("on" + type, fn);
+                }
+            },
+            getTarget: function (e) {
+                //如果浏览器支持target，就返回它
+                if (e.target) {
+                    return e.target;
+                }
+
+                return e.srcElement;
+            },
+            preventDefault: function(e) {
+                //禁止执行事件的默认操作
+                if (e.preventDefault) {
+                    e.preventDefault();
+                } else {
+                    e.returnValue = false;
+                }
+            }
+        };
+    </script>
+</body>
+</html>

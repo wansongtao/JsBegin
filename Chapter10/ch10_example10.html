@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨浏览器的事件实用工具</title>
+</head>
+<body>
+    <a href="../index.html" id="someLink">Click Me</a>
+
+    <script>
+
+        var evt = {
+            //
+            addListener: function(obj, type, fn) {
+                //如果浏览器支持addEventListener属性，则用该属性添加事件监听器
+                if (typeof obj.addEventListener != "undefined") {
+                    obj.addEventListener(type, fn);
+                } else {  //IE9以前的版本使用的添加事件监听器的方法
+                    obj.attachEvent("on" + type, fn);
+                }
+            },
+            removeListener: function(obj, type, fn) {
+                if (typeof obj.removeEventListener != "undefined") {
+                    obj.removeEventListener(type, fn);
+                } else {
+                    obj.detachEvent(type, fn);
+                }
+            },
+            getTarget: function(e) {
+                //如果浏览器支持target属性，则使用该属性获取触发事件的元素对象
+                if(typeof e.target != "undefined") {
+                    return e.target;
+                }
+
+                //IE9以前的版本获取触发事件的元素对象的方法
+                return e.srcElement;
+            },
+            preventDefault: function(e) {
+                //禁止执行事件的默认操作
+                if (typeof e.preventDefault != "undefined") {
+                    e.preventDefault();
+                } else {
+                    e.returnValue = false;
+                }
+            }
+        };
+
+        var link = document.getElementById("someLink");
+
+        
+        function linkClick (e) {
+            alert("This link is going nowhere");
+
+            evt.preventDefault(e);
+        }
+
+        evt.addListener(link, "click", linkClick);
+    </script>
+</body>
+</html>

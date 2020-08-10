@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加和删除多个事件处理程序</title>
+</head>
+<body>
+    <img src="../socure/images/tx1.jpg" alt="" id="img0">
+    <div id="status"></div>
+
+    <script>
+        window.onload = function() {
+            /**
+            * @description 支持IE9以前的版本
+            */
+            var evt = {
+                addListener: function(obj, type, fn) {
+                    if (typeof obj.addEventListener != "undefined") {
+                        obj.addEventListener(type, fn);
+                    } else {
+                        obj.attachEvent("on" + type, fn);
+                    }
+                },
+                removeListener: function(obj, type, fn) {
+                    if (typeof obj.removeEventListener != "undefined") {
+                        obj.removeEventListener(type, fn);
+                    } else {
+                        obj.detachEvent("on" + type, fn);
+                    }
+                },
+                getTarget: function(e) {
+                    if (typeof e.target != "undefined") {
+                        return e.target;
+                    }
+
+                    return e.srcElement;
+                },
+                preventDefault: function(e) {
+                    if (typeof e.preventDefault != "undefined"){
+                        e.preventDefault();
+                    } else {
+                        e.returnValue = false;
+                    }
+                }
+            };
+
+            function isOldIE(obj) {
+                if (typeof obj.attachEvent != "undefined") {
+                    return true;
+                }
+
+                return false;
+            }
+
+            var myImages = ["../socure/images/tx1.jpg", "../socure/images/tx2.jpg", "../socure/images/tx3.jpg", "../socure/images/tx4.jpg", "../socure/images/tx5.jpg"];
+
+            function changeImg(e) {
+                var el = evt.getTarget(e);
+                var newImgNumber = Math.floor(Math.random() * 5);
+
+                while(el.src.indexOf(myImages[newImgNumber]) != -1) {
+                    newImgNumber = Math.floor(Math.random() * 5);
+                }
+
+                el.src = myImages[newImgNumber];
+            }
+
+            function updateStatus(e) {
+                var el = evt.getTarget(e);
+                var status = document.getElementById("status");
+
+                status.innerHTML = "The image changed to " + el.src;
+
+                if (el.src.indexOf("tx5") > -1) {
+                    evt.removeListener(el, "click", changeImg);
+                    evt.removeListener(el, "click", updateStatus);
+                }
+            }
+
+            var imgObj = document.getElementById("img0");
+
+            if(isOldIE(imgObj)) {
+                //IE9以前的版本是先执行后面的事件
+                evt.addListener(imgObj, "click", updateStatus);
+                evt.addListener(imgObj, "click", changeImg);           
+            } else {
+                evt.addListener(imgObj, "click", changeImg);
+                evt.addListener(imgObj, "click", updateStatus);
+            }
+        };
+    </script>
+</body>
+</html>

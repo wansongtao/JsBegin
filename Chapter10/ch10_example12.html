@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建释放目标</title>
+    <style>
+        .drop-zone {
+            width: 300px;
+            padding: 20px;
+            border: 2px dashed #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="dropZone" class="drop-zone">Drop Zone!</div>
+    <div id="dropStatus" draggable="true">first</div>
+
+    <script>
+        function handleDragEnter(e) {
+            dropStatus.innerHTML = "拖动过程中，鼠标第一次移入目标元素时触发";
+        }
+
+        var dropZone = document.getElementById("dropZone");
+        var dropStatus = document.getElementById("dropStatus");
+
+        //dragenter 拖动过程中，鼠标第一次移入目标元素时触发
+        //dragstart 开始拖动时在元素上触发
+        //drag 拖动对象的过程中一直触发
+        //dragend 拖动操作结束时触发，无论是否释放了该对象
+        dropZone.addEventListener("dragenter", handleDragEnter);
+    </script>
+</body>
+</html>

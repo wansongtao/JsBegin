@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整的拖放操作</title>
+    <style>
+        [data-drop-target] {
+            height: 400px;
+            width: 200px;
+            margin: 2px;
+            background: gainsboro;
+            float: left;
+        }
+
+        .drag-enter {
+            border: 2px dashed #000;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .navy {
+            background: navy;
+        }
+
+        .red {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div data-drop-target = "true">
+        <div id="box1" draggable="true" class="box navy">box1</div>
+        <div id="box2" draggable="true" class="box red">box2</div>
+    </div>
+    <div data-drop-target="true">box3</div>
+
+    <script>
+        /**
+         * @description 为拖动操作存储数据
+        */
+        function handleDragStart(e) {
+            e.dataTransfer.setData("text", this.id);
+        }
+
+        /**
+         * @description 拖动元素时鼠标第一次进入目标元素触发， 拖动元素时鼠标离开目标元素时触发
+         * 
+        */
+        function handleDragEnterLeave(e) {
+            if (e.type == "dragenter") {
+                this.className = "drag-enter";
+            } else {
+                this.className = "";
+            }
+        }
+
+        //drop拖动元素时，在目标元素上释放鼠标时触发
+        function handleOverDrop(e) {
+            e.preventDefault();
+
+            if (e.type != "drop"){
+                return;
+            }
+
+            //获取拖动元素时存入的拖动元素ID
+            var draggedId = e.dataTransfer.getData("text");
+
+            //获取拖动的元素对象
+            var draggedE1 = document.getElementById(draggedId);
+
+            //parentNode 返回树形结构中包含当前节点的元素(父节点)
+            if(draggedE1.parentNode == this) {
+                return;
+            }
+
+            //移除该元素
+            draggedE1.parentNode.removeChild(draggedE1);
+
+            //将拖动的元素添加到当前元素的末尾
+            this.appendChild(draggedE1);
+            this.className = "";
+        }
+
+        //获取添加了draggable属性的所有元素
+        var draggable = document.querySelectorAll("[draggable]");
+        var targets = document.querySelectorAll("[data-drop-target]");
+
+        for (var i = 0; i < draggable.length; i++) {
+            //dragstart 开始拖动元素时，在元素上触发的事件
+            draggable[i].addEventListener("dragstart", handleDragStart);
+        }
+
+        for (var i = 0; i < targets.length; i++) {
+            targets[i].addEventListener("dragover",handleOverDrop);
+            targets[i].addEventListener("drop", handleOverDrop);
+            targets[i].addEventListener("dragenter", handleDragEnterLeave);
+            targets[i].addEventListener("dragleave", handleDragEnterLeave);
+        }
+    </script>
+</body>
+</html>
