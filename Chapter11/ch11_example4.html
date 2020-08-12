@@ -68,7 +68,7 @@
         //change事件 当它获得焦点时的值和失去焦点时的值不同时触发
         myForm.txtName.addEventListener("change", txtNameChange);
 
-        //如果年龄无效，会触发blur事件，并显示一个警告框，但按钮的click事件不会触发。但是在Firefox中，这两个事件都会触发，导致年龄无效警告框被“感谢完成表单”警告框遮住
+        //失去焦点，会触发blur事件，并显示一个警告框，但按钮的click事件不会触发。但是在Firefox中，这两个事件都会触发，导致年龄无效警告框被“感谢完成表单”警告框遮住
         myForm.txtAge.addEventListener("blur", txtAgeBlur);
 
         myForm.btnCheckForm.addEventListener("click", btnCheckFormClick);
