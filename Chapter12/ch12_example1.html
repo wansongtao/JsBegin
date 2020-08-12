@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 12: Example 1</title>
+    <style>
+        [data-drop-target] {
+            float: left;
+            height: 400px;
+            width: 200px;
+            margin: 2px;
+            background: gainsboro;            
+        }
+
+        .drag-enter {
+            border: 2px dashed #000;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .navy {
+            background-color: navy;
+        }
+
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div data-drop-target="true">
+        <div id="box1" draggable="true" class="box navy"></div>
+        <div id="box2" draggable="true" class="box red"></div>
+    </div>
+    <div data-drop-target="true"></div>
+
+    <script>
+        function handleDragStart(e) {
+            var data = {
+                elementId: this.id,
+                message: "You moved an element!"
+            };
+
+            //JSON.stringify(data) 将data转换为json字符串
+            e.dataTransfer.setData("text", JSON.stringify(data));
+        }
+
+        function handleDragEnterLeave(e) {
+            if (e.type == "dragenter") {
+                this.className = "drag-enter";
+            } else {
+                this.className = "";
+            }
+        }
+
+        function handleOverDrop(e) {
+            //取消dragover的默认操作，才能触发drop事件
+            e.preventDefault();
+
+            if (e.type != "drop") {
+                return;
+            }
+
+            var json = e.dataTransfer.getData("text");
+
+            //JSON.parse(json) 将json转换为js对象
+            var data = JSON.parse(json);
+
+            var draggedE1 = document.getElementById(data.elementId);
+
+            if (draggedE1.parentNode == this) {
+                this.className = "";
+                return;
+            }
+
+            draggedE1.parentNode.removeChild(draggedE1);
+
+            this.appendChild(draggedE1);
+            this.className = "";
+
+            alert(data.message);
+        }
+
+        var draggable = document.querySelectorAll("[draggable]");
+        var targets = document.querySelectorAll("[data-drop-target]");
+
+        for (var i = 0; i < draggable.length; i++) {
+            //开始拖动元素(draggable[i])时触发
+            draggable[i].addEventListener("dragstart", handleDragStart);
+        }
+
+        for (var i = 0; i < targets.length; i++) {
+            //拖动元素移动到targets[i]元素上时触发
+            targets[i].addEventListener("dragover", handleOverDrop);
+
+            //在targets[i]元素上释放拖动元素时触发
+            targets[i].addEventListener("drop", handleOverDrop);
+
+            //拖动元素第一次进入targets[i]元素时触发
+            targets[i].addEventListener("dragenter", handleDragEnterLeave);
+
+            //拖动元素离开targets[i]元素时触发
+            targets[i].addEventListener("dragleave", handleDragEnterLeave);
+        }
+    </script>
+</body>
+</html>
