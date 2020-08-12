@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算机各种配置的价格</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <p>
+            <label for="">计算机系统：</label>
+            
+            <input type="radio" name="computerSystem" id="windows" value="3000" />
+            <label for="windows">windows</label>
+          
+            <input type="radio" id="MacS" name="computerSystem" value="4000" checked />
+            <label for="MacS">MacS</label>
+        </p>
+        <p>
+            <label for="">计算机形状：</label>
+
+            <input type="radio" name="shape" id="desktop" value="1000">
+            <label for="desktop">台式</label>
+
+            <input type="radio" name="shape" id="portable" value="500" checked />
+            <label for="portable">手提</label>
+        </p>
+
+        <p>
+            <label for="">cpu：</label>
+
+            <input type="radio" name="cpu" id="cpu1" value="1000" checked />
+            <label for="cpu1">Inter 5</label>
+
+            <input type="radio" name="cpu" id="cpu2" value="1500" />
+            <label for="cpu2">Inter 7</label>
+
+            <input type="radio" name="cpu" id="cpu3" value="2000" />
+            <label for="cpu3">Inter 9</label>
+        </p>
+
+        <p>
+            <label for="">显卡：</label>
+
+            <input type="radio" name="xianka" id="Acard" value="500" checked />
+            <label for="Acard">A卡</label>
+
+            <input type="radio" name="xianka" id="Ncard" value="1000" checked />
+            <label for="Ncard">N卡</label>
+
+            <input type="radio" name="xianka" id="jixian" value="300" checked />
+            <label for="jixian">集显</label>
+        </p>
+        <p>
+            <label for="">总价：</label>
+            <input type="text" name="total" id="total" />
+        </p>
+    </form>
+
+    <script>
+        var myForm = document.form1;
+        var comSym = myForm.computerSystem;
+        var shape = myForm.shape;
+        var cpu = myForm.cpu;
+        var myCard = myForm.xianka;
+
+        //返回选中的单选按钮的值
+        function returnCheckedRadioValue(radio) {
+            for (var loopCount = 0 ; loopCount < radio.length; loopCount++) {
+                if (radio[loopCount].checked) {
+                    return radio[loopCount].value;
+                }
+            }
+        }
+
+        function returnPrice() {
+            var comSymPrice = parseInt(returnCheckedRadioValue(comSym), 10);
+            var shapePrice = parseInt(returnCheckedRadioValue(shape), 10);
+            var cpuPrice = parseInt(returnCheckedRadioValue(cpu), 10);
+            var myCardPrice = parseInt(returnCheckedRadioValue(myCard), 10);
+            var total;
+
+            total = comSymPrice + shapePrice + cpuPrice + myCardPrice;
+
+            myForm.total.value = total;
+        }
+
+        //表单的input事件
+        myForm.addEventListener("click", returnPrice);
+    </script>
+</body>
+</html>

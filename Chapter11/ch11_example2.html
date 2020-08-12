@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Example 2</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <input type="button" name="myButton" value="Button clicked 0 times" />
+    </form>
+
+    <script>
+        //获取表单form1里名叫myButton的元素
+        var myButton = document.form1.myButton;
+        var numberOfClicks = 0;
+
+        function myButtonClick() {
+            numberOfClicks++;
+            myButton.value = "Button clicked " + numberOfClicks + " times.";
+        }
+
+        myButton.addEventListener("click", myButtonClick);
+    </script>
+</body>
+</html>

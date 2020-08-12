@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example 7 Update</title>
+</head>
+<body>
+    <form action="" name="theForm">
+        <select name="theDay" id="theDay" size="5">
+            <option value="0" selected>Monday</option>
+            <option value="1">Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+            <option value="6">Sunday</option>
+        </select>
+        <br />
+        <input type="button" value="Remove Wednesday" name="btnRemoveWed" />
+        <input type="button" value="Add Wednesday" name="btnAddWed" />
+        <br />
+    </form>
+
+    <script>
+        var theForm = document.theForm;
+
+        function btnRemoveWedClick() {
+            var days = theForm.theDay;
+
+            if (days.options[2].text == "Wednesday") {
+                //select对象的remove()方法只接受一个参数，即要删除的选项的索引。删除一个选项后，集合中该选项之后的所有选项都会向前移动。
+                days.remove(2);
+            } else {
+                alert("There is no Wednesday here!");
+            }
+        }
+
+        function btnAddWedClick() {
+            var days = theForm.theDay;
+            var options = days.options;
+
+            if (options[2].text != "Wednesday") {
+                var option = new Option("Wednesday", 2);
+                var thursdayOption = options[2];
+
+                try{
+                    //add(parameter1, parameter2) 第一个参数是要添加的option对象，第二个参数是要放在新option对象之后的option对象。如果第二个参数为空，则添加到末尾。
+                    //add()方法不会覆盖索引位置上已有的option对象，而是向后移动集合中option对象的位置。
+                    days.add(option, thursdayOption);
+                }
+                catch (error) {
+                    //但在IE7或IE8的给标准模式下，第二个参数是要添加选项的索引位置。
+                    days.add(option, 2);
+                }
+            } else {
+                alert("Do you want to have TWO Wednesday?");
+            }
+        }
+
+        theForm.btnRemoveWed.addEventListener("click", btnRemoveWedClick);
+        theForm.btnAddWed.addEventListener("click", btnAddWedClick);
+    </script>
+</body>
+</html>

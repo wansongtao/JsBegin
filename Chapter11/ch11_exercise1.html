@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>温度转换</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <p>
+            <label for="">华氏度：</label>
+            <!-- required 用户必须输入其值 -->
+            <input type="number" id="fahrenheit" name="fahrenheit" required />
+        </p>
+
+        <p>
+            <label for="">摄氏度：</label>
+            <input type="text" id="celsius" name="celsius" maxlength="6" />
+        </p>
+        
+    </form>
+    <!-- degCent = 5/9 * (degFahren - 32); -->
+    <script>
+        var myForm = document.form1;
+        var fahrenInput = myForm.fahrenheit;
+        var celsiusInput = myForm.celsius;
+
+        function temperatureConversion() {
+            //不管用户输入的是否为数字，js获取其值时，都是字符串
+            var degFahren = parseFloat(fahrenInput.value);
+
+            //判断用户输入的值是否可以转换为数值型
+            if(isNaN(degFahren)) {
+                //触发blur事件时，点击确定，输入框失去焦点，则会陷入死循环（一直弹出）
+                alert("Please enter a valid value!");
+
+                //聚焦到fahrenInput元素上
+                fahrenInput.focus();
+
+                //选中用户输入的文本
+                fahrenInput.select();
+
+                celsiusInput.value = "";
+            } else {
+                //设置CelsiusInput元素的值
+                celsiusInput.value =  5 / 9 * (degFahren - 32);
+            }
+        }
+
+        //当fahrenInput文本框失去焦点时触发blur事件
+        //fahrenInput.addEventListener("blur", temperatureConversion);
+
+        //如果文本框失去焦点，且其内容自获得焦点以来发生了变化，则触发change事件
+        //fahrenInput.addEventListener("change", temperatureConversion);
+
+        //input事件，用户的每一次输入都会触发该事件
+        fahrenInput.addEventListener("input", temperatureConversion);
+
+    </script>
+</body>
+</html>

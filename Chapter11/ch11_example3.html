@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Example 3</title>
+</head>
+<body>
+    <form action="" name="form1">
+        <input type="button" name="myButton" value="Mouse goes up" />
+    </form>
+
+    <script>
+        var myButton = document.form1.myButton;
+
+        function myButtonMouseup() {
+            myButton.value = "Mouse Goes Up";
+        }
+
+        function myButtonMousedown() {
+            myButton.value = "Mouse Goes Down";
+        }
+
+        //mousedown事件，在myButton元素上按下鼠标按键时触发
+        myButton.addEventListener("mousedown", myButtonMousedown);
+
+        //mouseup事件，在myButton元素上松开鼠标按键时触发
+        myButton.addEventListener("mouseup", myButtonMouseup);
+    </script>
+</body>
+</html>

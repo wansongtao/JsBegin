@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Example 4</title>
+</head>
+<body>
+    <form action="" name="form1">
+        Please enter the follow details:
+        <p>
+            Name: 
+            <input type="text" name="txtName">
+        </p>
+        <p>
+            Age: 
+            <input type="text" name="txtAge" size="3" maxlength="3">
+        </p>
+        <p>
+            <input type="button" value="Check details" name="btnCheckForm">
+        </p>
+    </form>
+
+    <script>
+        //根据form表单域的name属性获取表单
+        var myForm = document.form1;
+
+        function btnCheckFormClick() {
+            //根据input的name属性获取具体的input输入框
+            var txtName = myForm.txtName;
+            var txtAge = myForm.txtAge;
+
+            if(txtAge.value == "" || txtName.value == "") {
+                alert("Please complete all of the form");
+
+                if (txtName.value == "") {
+                    //如果txtName的value属性为空，则将焦点移到txtName输入框
+                    txtName.focus();
+                } else {
+                    //如果txtAge的value属性为空，则将焦点移到txtage输入框
+                    txtAge.focus();
+                }
+            } else {
+                alert("Thanks for completing the form " + txtName.value);
+            }          
+        }
+
+        function txtAgeBlur(e) {
+            var target = e.target;  //获取触发该事件的元素对象
+
+            //判断用户输入的年龄是否有效
+            if (isNaN(target.value)) {
+                //输入无效的值会陷入死循环
+                //alert("Please enter a valid age");
+
+                //将焦点设置回该文本框
+                target.focus();
+
+                //加亮文本
+                target.select();
+            }
+        }
+
+        function txtNameChange(e) {
+            alert("Hi " + e.target.value);
+        }
+
+        //change事件 当它获得焦点时的值和失去焦点时的值不同时触发
+        myForm.txtName.addEventListener("change", txtNameChange);
+
+        //如果年龄无效，会触发blur事件，并显示一个警告框，但按钮的click事件不会触发。但是在Firefox中，这两个事件都会触发，导致年龄无效警告框被“感谢完成表单”警告框遮住
+        myForm.txtAge.addEventListener("blur", txtAgeBlur);
+
+        myForm.btnCheckForm.addEventListener("click", btnCheckFormClick);
+    </script>
+</body>
+</html>

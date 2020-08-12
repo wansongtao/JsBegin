@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Example 11</title>
+</head>
+<body>
+    <form action="" id="form1" name="form1">
+        <p>
+            <label for="minValue">Min: </label>
+            <input type="number" id="minValue" name="minValue" required />
+        </p>
+        <p>
+            <label for="maxValue">Max: </label>
+            <input type="number" id="maxValue" name="maxValue" />
+        </p>
+        <p>
+            <label for="stepValue">Step: </label>
+            <input type="number" id="stepValue" name="stepValue" />
+        </p>
+        <p>
+            <input type="range" id="slider" name="slider" />
+        </p>
+    </form>
+    <output id="result" name="result" form="form1" for="slider"></output>
+    <div id="output"></div>
+    <!-- meter元素用于图形化地显示指定范围内的某个值 -->
+    <meter min="0" max="150" low="40" optimum="75" high="100" value="80">80 Units of Something</meter>
+
+    <script>
+        var myForm = document.form1;
+        var output = myForm.result;
+
+        function formInputChange() {
+            //获取滑块元素
+            var slider = myForm.slider;
+
+            //滑块的最小值
+            slider.min = parseFloat(myForm.minValue.value);
+
+            //滑块的最大值
+            slider.max = parseFloat(myForm.maxValue.value);
+
+            //值得递增量
+            slider.step = parseFloat(myForm.stepValue.value);
+
+            result.value = slider.value;
+        }
+
+        myForm.addEventListener("input", formInputChange);
+    </script>
+</body>
+</html>

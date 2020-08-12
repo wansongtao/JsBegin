@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Example 9</title>
+</head>
+<body>
+    <div>Local Time is <span id="spanLocalTime"></span></div>
+    <div id="divCityTime"></div>
+
+    <form action="" name="form1">
+        <select name="lstCity" id="lstCity" size="5">
+            <option value="60" selected>Berlin</option>
+            <option value="330">Bombay</option>
+            <option value="0">London</option>
+            <option value="180">Moscow</option>
+            <option value="-300">New York</option>
+            <option value="60">Paris</option>
+            <option value="-480">San Francisco</option>
+            <option value="600">Sydney</option>
+        </select>
+
+        <p>
+            <input type="checkbox" id="chkDst" name="chkDst">
+            <label for="chkDst">Adjust city time for Daylight Savings</label>
+        </p>
+    </form>
+
+    <script>
+        var myForm = document.form1;
+
+        function updateTimeZone() {
+            //获取城市选择框
+            var lstCity = myForm.lstCity;
+
+            //获取选中的option
+            var selectedOption = lstCity.options[lstCity.selectedIndex];
+
+            //所选城市与UTC时间的差值
+            var offset = selectedOption.value;
+            var selectedCity = selectedOption.text;
+
+            //确定用户是否选中了夏时制
+            var dstAdjust = 0;
+
+            if (myForm.chkDst.checked) {
+                dstAdjust = 60;
+            }
+
+            updateOutput(selectedCity, offset, dstAdjust);
+        }
+
+        function updateOutput(selectedCity, offset, dstAdjust) {
+            var now = new Date();
+
+            //toLocaleString()把日期和时间转换为本地格式
+            document.getElementById("spanLocalTime").innerHTML = now.toLocaleString();
+
+            //getTimezoneOffset()方法返回本地时间与UTC时间之间的差值（以分钟为单位）
+            //now.getMinutes() + now.getTimezoneOffset() = UTC时间   offset 所选城市与UTC时间的差值  dstAdjust 夏时制
+            now.setMinutes(now.getMinutes() + now.getTimezoneOffset() + parseInt(offset, 10) + dstAdjust);
+
+            var resultsText = selectedCity + " time is " + now.toLocaleString();
+
+            document.getElementById("divCityTime").innerHTML = resultsText;
+        }
+
+        myForm.lstCity.addEventListener("change", updateTimeZone);
+        myForm.chkDst.addEventListener("click", updateTimeZone);
+
+        updateTimeZone();
+    </script>
+</body>
+</html>

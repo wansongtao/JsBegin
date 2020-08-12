@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Example 7</title>
+</head>
+<body>
+    <form action="" name="theForm">
+        <select name="theDay" id="theDay" size="5">
+            <option value="0" selected>Monday</option>
+            <option value="1">Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+            <option value="6">Sunday</option>
+        </select>
+        <br />
+        <input type="button" value="Remove Wednesday" name="btnRemoveWed" />
+        <input type="button" value="Add Wednesday" name="btnAddWed" />
+        <br />
+    </form>
+
+    <script>
+        //获取表单域对象
+        var theForm = document.theForm;
+
+        //移除选择框中的第三个选项wednesday
+        function btnRemoveWedClick() {
+            //获取列表框里的所有列表项
+            var options = theForm.theDay.options;
+
+            if (options[2].text == "Wednesday") {
+                options[2] = null;
+            } else {
+                alert("There is no Wednesday here!");
+            }
+        }
+
+        function btnAddWedClick() {
+            //获取theForm表单域里theDay选择框里所有的选项
+            var options = theForm.theDay.options;
+
+            if (options[2].text != "Wednesday") {
+                var lastOption = new Option();
+
+                options[options.length] = lastOption;
+
+                //将索引2（包含2）以后的选择项都向后移一位
+                for (var index = options.length - 1; index > 2; index--) {
+                    var currentOption = options[index];
+                    var previousOption = options[index - 1];
+
+                    currentOption.text = previousOption.text;
+                    currentOption.value = previousOption.value;
+                }
+
+                //text: wednesday  value: 2
+                var option = new Option("Wednesday", 2);
+                options[2] = option;
+            } else {
+                alert("Do you want to have TWO Wednesdays?");
+            }
+        }
+
+        theForm.btnRemoveWed.addEventListener("click", btnRemoveWedClick);
+        theForm.btnAddWed.addEventListener("click", btnAddWedClick);
+    </script>
+</body>
+</html>
