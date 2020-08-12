@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: Example 3a</title>
+</head>
+<body>
+    <h1>Welcome to Example 3a</h1>
+
+    <div id="whatsNew"></div>
+
+    <script>
+        var lastUpdated = new Date("Tue, 28 Dec 2020");
+        var lastVisit = localStorage.lastVisit;
+
+        if (lastVisit) {
+            lastVisit = new Date(lastVisit);
+
+            if (lastVisit < lastUpdated) {
+                document.getElementById("whatsNew").innerHTML = "<a href='ch13_example3b.html'>What's New?</a>";
+            }
+        }
+
+        //localStorage 本地存储  SessionStorage 会话存储  只能存储字符串
+        //localStorage.setItem(param1, param2)  第一个参数要插入的键名，第二个参数要插入的值。不过一般采用localStorage.name = value 插入数据，除非遇到键是无效的js标识符，例如：localStorage.setItem("my name", "wansongtao");
+        localStorage.lastVisit = new Date();  //将当前时间存入本地存储中
+
+        /*  键名区分大小写
+            localStorage.getItem("name"); 获取键名为name的值，也可以采用 var value = localStorage.name;
+
+            localStorage.removeItem("name"); 删除键名为name的键值对
+
+            localStorage.name = null; 删除键名为name的键值对
+
+            localStorage.clear(); 删除本地存储中的所有键和值。
+        */
+    </script>
+</body>
+</html>

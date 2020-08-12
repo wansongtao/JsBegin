@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web存储练习</title>
+    <script src="../jQuery/jquery-3.5.1.js"></script>
+    <style>
+        .mytitle {
+            text-align: center;
+        }
+
+        .myimg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+            width: 750px;
+            height: 398px;
+            margin-top: -199px;
+            margin-left: -375px;
+            padding: 0;
+            border-radius: 20px;
+            /* x轴偏移 y轴偏移 阴影模糊程度  阴影大小 阴影颜色*/
+            box-shadow: 0 0 5px 5px rgb(134, 132, 132);
+        }
+
+        ul {
+            position: absolute;
+            bottom: 60px;
+            right: 60px;
+            list-style: none;
+            margin: 0;
+            padding: 0;      
+        }
+
+        li {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            padding: 0;
+            background: rgb(160, 157, 157);
+            line-height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .myHover {
+            background-color: rgb(212, 201, 46);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="myimg" class="myimg">
+        <img src="../socure/images/1.jpg" alt="广告" />
+        <img src="../socure/images/2.jpg" alt="广告" />
+        <img src="../socure/images/3.jpg" alt="广告" />
+        <img src="../socure/images/4.jpg" alt="广告" />
+
+        <ul>
+            <li class="myHover">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <div id="count">
+
+    </div>
+
+    <script>
+        $(function() {
+            var nowDate = new Date();
+
+            //判断是否将月份存入了本地存储
+            if(localStorage.myMonth >= 0 ) {
+                //判断本地存储里的月份是否和当前月份一致
+                if(nowDate.getMonth() != localStorage.myMonth) {
+                    //不一致时，重新存入当前月份，并将本月访问次数归零
+                    localStorage.count = 0;
+                    localStorage.myMonth = nowDate.getMonth();
+                }
+            }
+            else {                
+                localStorage.myMonth = nowDate.getMonth();
+            }
+
+            var mybtn = $("#myimg ul li");
+            var num = 0;
+            var myTime;  //初始化定时器
+
+            //记录用户访问次数
+            if (localStorage.count >= 1) {
+                var count = parseInt(localStorage.count, 10);
+                localStorage.count = ++count;
+            } else {               
+                localStorage.count = 1;
+            }
+
+            //在用户每次访问页面时加载不同的广告
+            if(localStorage.lastImgIndex >= 0) {
+                //读取本地存储中用户上次看见的照片的索引并加一
+                var imgIndex = parseInt(localStorage.lastImgIndex, 10) + 1;
+
+                //判断是否超出了照片组的最大索引
+                if(imgIndex >= $("#myimg img").length) {
+
+                    localStorage.lastImgIndex = 0;
+                    mybtn.eq(0).addClass("myHover").siblings().removeClass("myHover");
+                    $("#myimg img").eq(0).show().siblings("img").hide();
+                } else {
+
+                    localStorage.lastImgIndex = imgIndex;
+                    mybtn.eq(imgIndex).addClass("myHover").siblings().removeClass("myHover");
+                    $("#myimg img").eq(imgIndex).show().siblings("img").hide();
+                }
+            } else {
+                localStorage.lastImgIndex = num;
+            }
+
+            function changeImg() {
+                //清除定时器
+                clearInterval(myTime);
+
+                //选中的li元素添加一个类，其它兄弟元素移除该类
+                $(this).addClass("myHover").siblings().removeClass("myHover");
+
+                //获取li的索引
+                num = $(this).index();
+
+                //将用户上一次看见的照片索引存入本地存储中
+                localStorage.lastImgIndex = num;
+
+                //显示当前索引的照片，其他兄弟照片隐藏
+                $("#myimg img").eq(num).show().siblings("img").hide();
+            }
+
+            //从上一次的位置开始自动轮播
+            function  autoImg() {
+                //获取本地存储中的照片索引
+                var lastnum = localStorage.lastImgIndex;
+
+                myTime = setInterval(function() {
+
+                    if (lastnum >= mybtn.length) {
+                        lastnum = 0;
+                    }
+
+                    mybtn.eq(lastnum).addClass("myHover").siblings().removeClass("myHover");
+
+                    $("#myimg img").eq(lastnum).show().siblings("img").hide();
+                    
+                    localStorage.lastImgIndex = lastnum;
+
+                    lastnum++;
+                }, 2000);
+
+            }
+
+            //changeImg鼠标移入触发的事件，autoImge 鼠标移出触发的事件
+            mybtn.hover(changeImg, autoImg);
+
+            $("#count").html("<h1 class='mytitle'>这是您本月的第" + localStorage.count + "次访问。</h1>");
+
+            autoImg();
+        });
+
+        
+    </script>
+</body>
+</html>
