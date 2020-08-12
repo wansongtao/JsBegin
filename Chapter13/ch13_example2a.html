@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: Example 2a</title>
+</head>
+<body>
+    <h1>Welcome to Example 2a</h1>
+
+    <div id="whatsNew"></div>
+
+    <script src="cookiefunctions.js"></script>
+    <script>
+        //网站上次更新日期，假设为2020-12-28
+        var lastUpdated = new Date("Tue, 28 Dec 2020");
+
+        //获取用户上次访问网站的时间
+        var lastVisit = getCookieValue("LastVisit");
+
+        //如果lastVisit为falsy，则表示用户从未访问过站点，或者cookie已过期
+        if (lastVisit) {
+            lastVisit = new Date(lastVisit);
+
+            //更新后，用户没有访问过
+            if (lastVisit < lastUpdated) {
+                document.getElementById("whatsNew").innerHTML = "<a href='ch13_example2b.html'>What's New?</a>";
+            }
+        }
+
+        //将用户本次访问网站的时间存入cookie中
+        var now = new Date();
+        setCookie("LastVisit", now.toUTCString());
+    </script>
+</body>
+</html>
